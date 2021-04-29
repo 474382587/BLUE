@@ -1,7 +1,7 @@
 name: Cron Job Demo
 on:
   schedule:
-    - cron: '07 * * * *'
+    - cron: '12,15,19 * * * *'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
