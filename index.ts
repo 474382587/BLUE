@@ -2,7 +2,7 @@ import { getOctokit } from '@actions/github';
 import { Solution, solutions as issues } from './solutions/solutions';
 import * as moment from 'moment';
 
-const start = moment.utc('2021-04-28'); // start date
+const start = moment.utc(process.env.start); // start date
 const now = moment.utc(); //todays date
 const duration = moment.duration(now.diff(start));
 const current = Math.ceil(duration.asDays());
