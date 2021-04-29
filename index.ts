@@ -9,7 +9,7 @@ type OwnerAndRepo = {
   repo: string;
 };
 
-console.log('token', core.getInput('token'))
+console.log('token', core.getInput('repository'))
 
 const octokit = getOctokit(core.getInput('token'));
 const getRepoAndOwner = (): OwnerAndRepo => {
