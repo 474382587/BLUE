@@ -9,6 +9,13 @@ const fullPath = path.join(process.env.GITHUB_WORKSPACE, fileName);
 
 const newFile = require(fullPath);
 console.log(newFile);
+fs.writeFileSync(
+  fullPath,
+  JSON.stringify({
+    current: current + 1,
+  })
+);
+
 
 type OwnerAndRepo = {
   owner: string;
@@ -49,9 +56,3 @@ const createIssue = async ({
 createIssue(issues[current]);
 
 console.log(fullPath);
-fs.writeFileSync(
-  fullPath,
-  JSON.stringify({
-    current: current + 1,
-  })
-);
