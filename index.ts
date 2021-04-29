@@ -1,21 +1,19 @@
 import { getOctokit } from '@actions/github';
-import * as fs from 'fs';
 import * as path from 'path';
 import { Solution, solutions as issues } from './solutions/solutions';
+import * as moment from 'moment';
 
 const fileName = 'dateCount.json';
-const current = require('./dateCount.json').current;
+// const current = require('./dateCount.json').current;
+const now = moment.utc('2021-04-28'); // another date
+const end = moment.utc(); //todays date
+const duration = moment.duration(now.diff(end));
+const current = duration.asDays();
+console.log(current, ' ------------ ')
 const fullPath = path.join(process.env.GITHUB_WORKSPACE, fileName);
 
 const newFile = require(fullPath);
 console.log(newFile);
-fs.writeFileSync(
-  fullPath,
-  JSON.stringify({
-    current: current + 1,
-  })
-);
-
 
 type OwnerAndRepo = {
   owner: string;
@@ -54,5 +52,3 @@ const createIssue = async ({
 };
 
 createIssue(issues[current]);
-
-console.log(fullPath);
