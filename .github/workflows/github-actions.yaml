@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+          token: ${{ secrets.TOKEN }}
+          repository: ${{ github.repository }}
       - run: npm install
       - run: npm run start
       - run: echo "🍏 This job's status is ${{ job.status }}."

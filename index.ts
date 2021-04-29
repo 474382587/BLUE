@@ -10,7 +10,7 @@ type OwnerAndRepo = {
 };
 
 const octokit = getOctokit(core.getInput('token'));
-
+console.log(core.getInput('token'))
 const getRepoAndOwner = (): OwnerAndRepo => {
   const [owner, repo] = core.getInput('repository').split('/');
   return {
@@ -26,6 +26,7 @@ const createIssue = async ({
 }: Solution): Promise<string> => {
   // Create an issue
   const { owner, repo } = getRepoAndOwner();
+  console.log({ owner, repo })
   const { data: issue } = await octokit.rest.issues.create({
     owner,
     repo,
