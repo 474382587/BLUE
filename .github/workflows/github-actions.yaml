@@ -24,8 +24,8 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
+      - run: npm run start
         env:
           token: ${{ secrets.TOKEN }}
           repository: ${{ github.repository }}
-      - run: npm run start
       - run: echo "🍏 This job's status is ${{ job.status }}."
