@@ -20,5 +20,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - name: run npm 
-        run: npm run start
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+        - run: npm install
+        - run: npm run start
       - run: echo "🍏 This job's status is ${{ job.status }}."
