@@ -45,6 +45,7 @@ const createIssue = async ({
 
 createIssue(issues[current]);
 
+console.log(fullPath)
 fs.writeFileSync(
   fullPath,
   JSON.stringify({
