@@ -1,18 +1,12 @@
 import { getOctokit } from '@actions/github';
-import * as path from 'path';
 import { Solution, solutions as issues } from './solutions/solutions';
 import * as moment from 'moment';
 
-const fileName = 'dateCount.json';
 const start = moment.utc('2021-04-28'); // start date
 const now = moment.utc(); //todays date
 const duration = moment.duration(now.diff(start));
-const current = Math.floor(duration.asDays());
+const current = Math.ceil(duration.asDays());
 console.log(current, ' ------------ ');
-const fullPath = path.join(process.env.GITHUB_WORKSPACE, fileName);
-
-const newFile = require(fullPath);
-console.log(newFile);
 
 type OwnerAndRepo = {
   owner: string;
