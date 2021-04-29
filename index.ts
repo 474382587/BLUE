@@ -12,7 +12,7 @@ console.log('token');
 
 const octokit = getOctokit(process.env.token);
 const getRepoAndOwner = (): OwnerAndRepo => {
-  const [owner, repo] = process.env.repository;
+  const [owner, repo] = process.env.repository.split('/');
   return {
     owner,
     repo,
