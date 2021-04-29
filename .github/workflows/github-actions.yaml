@@ -5,6 +5,9 @@ on:
     - cron: '50 06 * * *'
 jobs:
   Explore-GitHub-Actions:
+    inputs:
+      token: ${{ secrets.TOKEN }}
+      repository: ${{ github.repository }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -25,7 +28,4 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm run start
-        env:
-          token: ${{ secrets.TOKEN }}
-          repository: ${{ github.repository }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
