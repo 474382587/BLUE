@@ -16,6 +16,7 @@ jobs:
       - run: npm install
       - name: run start
         env: 
+          start: ${{secrets.START}}
           token: ${{ secrets.TOKEN }}
           repository: ${{ github.repository }}
         run: npm run start            
