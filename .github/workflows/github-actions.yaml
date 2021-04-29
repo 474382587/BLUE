@@ -2,7 +2,7 @@ name: Cron Job Demo
 on:
   push:
   schedule:
-    - cron: '47 04 * * *'
+    - cron: '50 06 * * *'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
