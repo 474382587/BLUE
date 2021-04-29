@@ -1,7 +1,11 @@
 import { getOctokit } from '@actions/github';
 import * as fs from 'fs';
-const current = require('./dateCount.json').current;
+import * as path from 'path';
 import { Solution, solutions as issues } from './solutions/solutions';
+
+const fileName = 'dateCount.json'
+const current = require('./dateCount.json').current;
+const fullPath = path.join(process.env.GITHUB_WORKSPACE, fileName);
 
 type OwnerAndRepo = {
   owner: string;
@@ -42,7 +46,7 @@ const createIssue = async ({
 createIssue(issues[current]);
 
 fs.writeFileSync(
-  'dateCount.json',
+  fullPath,
   JSON.stringify({
     current: current + 1,
   })
