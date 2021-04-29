@@ -1,5 +1,4 @@
 import { getOctokit } from '@actions/github';
-import * as core from '@actions/core';
 import * as fs from 'fs';
 const current = require('./dateCount.json').current;
 import { Solution, solutions as issues } from './solutions/solutions';
@@ -9,11 +8,11 @@ type OwnerAndRepo = {
   repo: string;
 };
 
-console.log('token', process.env.token)
+console.log('token');
 
-const octokit = getOctokit(core.getInput('token'));
+const octokit = getOctokit(process.env.token);
 const getRepoAndOwner = (): OwnerAndRepo => {
-  const [owner, repo] = core.getInput('repository').split('/');
+  const [owner, repo] = process.env.repository;
   return {
     owner,
     repo,
@@ -27,7 +26,7 @@ const createIssue = async ({
 }: Solution): Promise<string> => {
   // Create an issue
   const { owner, repo } = getRepoAndOwner();
-  console.log({ owner, repo })
+  console.log({ owner, repo });
   const { data: issue } = await octokit.rest.issues.create({
     owner,
     repo,
@@ -37,7 +36,6 @@ const createIssue = async ({
   });
 
   console.log('issue created!', issue);
-  core.info(`Created issue #${issue.number}`);
   return issue.number;
 };
 
