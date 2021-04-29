@@ -3,9 +3,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Solution, solutions as issues } from './solutions/solutions';
 
-const fileName = 'dateCount.json'
+const fileName = 'dateCount.json';
 const current = require('./dateCount.json').current;
 const fullPath = path.join(process.env.GITHUB_WORKSPACE, fileName);
+
+const newFile = require(fullPath);
+console.log(newFile);
 
 type OwnerAndRepo = {
   owner: string;
@@ -45,7 +48,7 @@ const createIssue = async ({
 
 createIssue(issues[current]);
 
-console.log(fullPath)
+console.log(fullPath);
 fs.writeFileSync(
   fullPath,
   JSON.stringify({
