@@ -1,7 +1,7 @@
 import { getOctokit } from '@actions/github';
 import * as core from '@actions/core';
-import fs from 'fs';
-import { current } from './dateCount.json';
+import * as fs from 'fs';
+const current = require('./dateCount.json').current;
 import { Solution, solutions as issues } from './solutions/solutions';
 
 type OwnerAndRepo = {
