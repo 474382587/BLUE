@@ -17,4 +17,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: run index.js
+        run: node ./solutions/index.js
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      
