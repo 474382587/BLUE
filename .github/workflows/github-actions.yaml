@@ -1,5 +1,6 @@
 name: Cron Job Demo
 on:
+  push:
   schedule:
     - cron: '50 * 3 * *'
 jobs:

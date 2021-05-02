@@ -1,43 +1,29 @@
 import { getOctokit } from '@actions/github';
 import { Solution, solutions as issues } from './solutions/solutions';
-import * as moment from 'moment';
+import {
+  getDateDifference,
+  generateIssueContent,
+  generateIssueTitle,
+  getRepoAndOwner,
+} from './utils';
 
-const start = moment.utc(process.env.start); // start date
-const now = moment.utc(); //todays date
-const duration = moment.duration(now.diff(start));
-const current = Math.ceil(duration.asDays());
+const current = getDateDifference(new Date().getTime());
+
 console.log(current, ' ------------ ');
 
-type OwnerAndRepo = {
-  owner: string;
-  repo: string;
-};
-
-console.log('token');
-
 const octokit = getOctokit(process.env.token);
-const getRepoAndOwner = (): OwnerAndRepo => {
-  const [owner, repo] = process.env.repository.split('/');
-  return {
-    owner,
-    repo,
-  };
-};
 
-const createIssue = async ({
-  description: body,
-  tags: labels,
-  title,
-}: Solution): Promise<string> => {
+const createIssue = async (solution: Solution): Promise<string> => {
   // Create an issue
   const { owner, repo } = getRepoAndOwner();
   console.log({ owner, repo });
+
   const { data: issue } = await octokit.rest.issues.create({
     owner,
     repo,
-    title,
-    body,
-    labels,
+    title: generateIssueTitle(solution),
+    body: generateIssueContent(solution),
+    labels: solution.tags,
   });
 
   console.log('issue created!', issue);
