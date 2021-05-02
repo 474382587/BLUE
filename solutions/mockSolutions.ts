@@ -1,18 +1,6 @@
-export interface Solution {
-  day: number;
-  title: string;
-  link: string;
-  tags: string[];
-  pres: string[];
-  description: string;
-  whys: string[];
-}
+import { Solutions } from './solutions';
 
-export interface Solutions {
-  [key: number]: Solution;
-}
-
-export const solutions: Solutions = {
+export const mockSolutions: Solutions = {
   1: {
     day: 1,
     title: '66. 加一',
@@ -40,10 +28,10 @@ export const solutions: Solutions = {
       `,
   },
   2: {
-    whys: [],
+    whys: ['因为', '所以'],
     day: 2,
     title: '266. 加一',
-    link: '222https://leetcode-cn.com/problems/plus-one',
+    link: 'https://leetcode-cn.com/problems/plus-one',
     tags: ['基础篇', '数组'], // 目前所有 README 都是没有的。因此如果没有的话，你可以先不返回，有的话就返回。后面我慢慢补
     pres: ['数组的遍历(正向遍历和反向遍历)'],
     description: `
