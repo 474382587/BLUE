@@ -1,5 +1,10 @@
 import { createIssue, getDateDifference, getSolutions } from './utils/index';
 
-const current = getDateDifference(new Date().getTime());
+const run = async () => {
+  const current = getDateDifference(new Date().getTime());
+  const solutions = await getSolutions('', true);
 
-createIssue(getSolutions('', true)[current]);
+  createIssue(solutions[current], false);
+};
+
+run();

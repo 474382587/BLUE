@@ -6,7 +6,7 @@ import { Solutions } from './../solutions/solutions.d';
 export const getSolutions = async (
   solutionsUrl: string,
   devMode?: boolean
-): Promise<any> => {
+): Promise<Solutions> => {
   if (devMode) {
     return mockSolutions;
   }
@@ -15,6 +15,6 @@ export const getSolutions = async (
     return solutions;
   } catch (err) {
     console.log(err);
-    return [];
+    return {};
   }
 };
